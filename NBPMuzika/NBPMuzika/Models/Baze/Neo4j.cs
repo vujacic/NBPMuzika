@@ -126,6 +126,38 @@ namespace NBPMuzika.Models.Baze
             List<Bend> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Bend>(qu).ToList();
             return vrati;
         }
+        
+        public List<Album> vratiAlbumPoID(GraphClient client, int id)
+        {
+            string query = "match (a:Album) where id(a)=" + id + " return a";
+            var qu = vratiRezultat(query);
+            List<Album> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Album>(qu).ToList();
+            return vrati;
+        }
+
+        public List<Bend> vratiBendPoID(GraphClient client, int id)
+        {
+            string query = "match (a:Bend) where id(a)=" + id + " return a";
+            var qu = vratiRezultat(query);
+            List<Bend> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Bend>(qu).ToList();
+            return vrati;
+        }
+
+        public List<Izvodjac> vratiIzvodjacaPoID(GraphClient client, int id)
+        {
+            string query = "match (a:Izvodjac) where id(a)=" + id + " return a";
+            var qu = vratiRezultat(query);
+            List<Izvodjac> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Izvodjac>(qu).ToList();
+            return vrati;
+        }
+
+        public List<Producent> vratiProducentaPoID(GraphClient client, int id)
+        {
+            string query = "match (a:Producent) where id(a)=" + id + " return a";
+            var qu = vratiRezultat(query);
+            List<Producent> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Producent>(qu).ToList();
+            return vrati;
+        }
 
         #endregion
     }
