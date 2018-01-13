@@ -32,7 +32,7 @@ namespace NBPMuzika.Controllers
             am.Bend = neo.bendKojiJeIzdao(id);
             am.Producent = neo.sviProducentiAlbuma(id);
 
-            string zaKesiranje = am.Album[0].id + "." + am.Album[0].name;
+            string zaKesiranje = am.Album[0].id + "." + am.Album[0].name+"/Album";
 
             red.IncrementTopPages(zaKesiranje);
             red.UpdateRecentPages(zaKesiranje);
