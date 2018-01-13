@@ -7,9 +7,10 @@ namespace NBPMuzika.Models.Entiteti
 {
     public class Album
     {
+        public int id { get; set; }
         public String name { get; set; }
-        public String Zanr { get; set; }
-        public int GodinaOsivanja { get; set; }
-        public int BrojPesama { get; set; }
+        public String zanr { get; set; }
+        public int godina { get; set; }
+        public int brojPesama { get; set; }
     }
 }
