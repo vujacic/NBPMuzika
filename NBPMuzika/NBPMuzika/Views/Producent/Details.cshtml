@@ -1,0 +1,24 @@
+﻿@model NBPMuzika.Models.Entiteti.ProducentModel
+
+@{
+    ViewBag.Title = Model.Producent[0].name + " - Music Library";
+}
+
+<h2>@Model.Producent[0].name</h2>
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>Albums</th>
+    </tr>
+
+    @foreach (var item in Model.Albumi)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.name, "Details", "Album", new { id=item.id},null)
+            </td>
+        </tr>
+    }
+
+</table>
+

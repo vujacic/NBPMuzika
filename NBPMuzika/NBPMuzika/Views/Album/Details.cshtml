@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Album[0].name+" - Music Library";
 }
 <link href="~/Views/Album/Rating.css" rel="stylesheet"/>
-<!--Kada se klikne na bend treba da se dodje do sajta bend-->
+<!--Kada se klikne na bend treba da se dodje do sajta benda-->
 <h3>@Html.ActionLink(Model.Bend[0].name,"Details","Bend",new { id = Model.Bend[0].id },null) - @Model.Album[0].name</h3>
 
 <div class="row">
