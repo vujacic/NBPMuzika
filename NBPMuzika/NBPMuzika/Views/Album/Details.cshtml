@@ -49,7 +49,7 @@
     {
         <tr>
             <!--Kada se klikne na producera treba da se ide na sajt tog producera-->
-            <td>@Html.ActionLink(Model.Producent[0].name, "Details", "Producent",new { id = Model.Producent[0].id },null)</td>
+            <td>@Html.ActionLink(prod.name, "Details", "Producent",new { id = prod.id },null)</td>
         </tr>
     }
 </table>

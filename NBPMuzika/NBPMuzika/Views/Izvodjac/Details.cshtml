@@ -1,0 +1,36 @@
+﻿@model NBPMuzika.Models.Entiteti.IzvodjacModel
+@{
+    ViewBag.Title = Model.Izvodjac[0].name + " - Music Library";
+}
+
+<h2>@Model.Izvodjac[0].name</h2>
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>Bands</th>
+    </tr>
+
+    @foreach (var bend in Model.Bendovi)
+    {
+        <tr>
+            <!--Kada se klikne na producera treba da se ide na sajt tog producera-->
+            <td>@Html.ActionLink(bend.name, "Details", "Bend", new { id = bend.id }, null)</td>
+        </tr>
+    }
+</table>
+
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>Albums</th>
+    </tr>
+
+    @foreach (var album in Model.Albumi)
+    {
+        <tr>
+            <!--Kada se klikne na producera treba da se ide na sajt tog producera-->
+            <td>@Html.ActionLink(album.name, "Details", "Bend", new { id = album.id }, null)</td>
+        </tr>
+    }
+</table>
+

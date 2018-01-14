@@ -124,6 +124,22 @@ namespace NBPMuzika.Models.Baze
             List<Bend> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Bend>(qu).ToList();
             return vrati;
         }
+
+        public List<Bend> bendoviIzvodjaca(int id)
+        {
+            string query = "match (i:Izvodjac) where i.id=" + id + " match (b:Bend) where (i)-[:CLAN]->(b) return b";
+            var qu = vratiRezultat(query);
+            List<Bend> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Bend>(qu).ToList();
+            return vrati;
+        }
+
+        public List<Album> sviAlbumiIzvodjaca(int id)
+        {
+            string query = "match(i:Izvodjac) where i.id=" + id + " match(a:Album) where (i)-[:IZDAO]->(a) return a";
+            var qu = vratiRezultat(query);
+            List<Album> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Album>(qu).ToList();
+            return vrati;
+        }
         
         public List<Album> vratiAlbumPoID(/*GraphClient client,*/ int id)
         {
