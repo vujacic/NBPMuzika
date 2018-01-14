@@ -15,14 +15,15 @@ namespace NBPMuzika.Models.Baze
             redis = ConnectionMultiplexer.Connect("localhost");
         }
 
-        //format ID-ja u Redis bazi je (ID elementa iz baze).(Naziv elementa iz baze)  (bez zagrada)
+#region TopIPopularneVrednosti
+        //format ID-ja u Redis bazi je (ID elementa iz baze).(Naziv elementa iz baze)/(tip elementa)  (bez zagrada)
         public void IncrementTopPages(string id)
         {
             var db = redis.GetDatabase();
                 db.SortedSetIncrement("top", id, 1);
         }
 
-        //format ID-ja u Redis bazi je (ID elementa iz baze).(Naziv elementa iz baze)  (bez zagrada)
+        //format ID-ja u Redis bazi je (ID elementa iz baze).(Naziv elementa iz baze)/(tip elementa)   (bez zagrada)
         public void UpdateRecentPages(string id)
         {
             var db = redis.GetDatabase();
@@ -80,5 +81,13 @@ namespace NBPMuzika.Models.Baze
             }
             return ret;
         }
+        #endregion
+
+#region KesiranjePretrage
+
+
+
+#endregion
+
     }
 }
