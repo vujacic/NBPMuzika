@@ -91,7 +91,7 @@ namespace NBPMuzika.Models.Baze
         public void KesirajAlbume(string query, List<Album> vrednosti)
         {
             var db = redis.GetDatabase();
-            db.StringSet(query + ".Album", JsonConvert.SerializeObject(vrednosti));
+            db.StringSet(query + ".Album", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0,5,0));
         }
 
         public List<Album> KesiraniAlbumi(string query)
@@ -107,7 +107,7 @@ namespace NBPMuzika.Models.Baze
         public void KesirajBend(string query,List<Bend> vrednosti)
         {
             var db = redis.GetDatabase();
-            db.StringSet(query + ".Bend", JsonConvert.SerializeObject(vrednosti));
+            db.StringSet(query + ".Bend", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
         }
 
         public List<Bend> KesiraniBendovi(string query)
@@ -123,7 +123,7 @@ namespace NBPMuzika.Models.Baze
         public void KesirajIzvodjaca(string query,List<Izvodjac> vrednosti)
         {
             var db = redis.GetDatabase();
-            db.StringSet(query + ".Izvodjac", JsonConvert.SerializeObject(vrednosti));
+            db.StringSet(query + ".Izvodjac", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
         }
 
         public List<Izvodjac> KesiraniIzvodjaci(string query)
@@ -139,7 +139,7 @@ namespace NBPMuzika.Models.Baze
         public void KesirajProducente(string query,List<Producent> vrednosti)
         {
             var db = redis.GetDatabase();
-            db.StringSet(query + ".Producent", JsonConvert.SerializeObject(vrednosti));
+            db.StringSet(query + ".Producent", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
         }
 
         public List<Producent> KesiraniProducenti(string query)
