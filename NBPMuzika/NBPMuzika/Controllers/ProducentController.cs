@@ -31,7 +31,6 @@ namespace NBPMuzika.Controllers
             pm.Albumi = neo.sviAlbumiProducenta(id);
 
             string zaKesiranje = pm.Producent[0].id + "." + pm.Producent[0].name+"/Producent";
-
             red.UpdateRecentPages(zaKesiranje);
             red.IncrementTopPages(zaKesiranje);
 

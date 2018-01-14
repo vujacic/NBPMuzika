@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using StackExchange.Redis;
+using Newtonsoft.Json;
+using NBPMuzika.Models.Entiteti;
 
 namespace NBPMuzika.Models.Baze
 {
@@ -84,8 +86,71 @@ namespace NBPMuzika.Models.Baze
         #endregion
 
 #region KesiranjePretrage
+        
 
+        public void KesirajAlbume(string query, List<Album> vrednosti)
+        {
+            var db = redis.GetDatabase();
+            db.StringSet(query + ".Album", JsonConvert.SerializeObject(vrednosti));
+        }
 
+        public List<Album> KesiraniAlbumi(string query)
+        {
+            var db = redis.GetDatabase();
+            var vrednost = db.StringGet(query + ".Album");
+            if (!vrednost.IsNull)
+                return JsonConvert.DeserializeObject<List<Album>>(vrednost);
+            else
+                return null;
+        }
+
+        public void KesirajBend(string query,List<Bend> vrednosti)
+        {
+            var db = redis.GetDatabase();
+            db.StringSet(query + ".Bend", JsonConvert.SerializeObject(vrednosti));
+        }
+
+        public List<Bend> KesiraniBendovi(string query)
+        {
+            var db = redis.GetDatabase();
+            var vrednost = db.StringGet(query + ".Bend");
+            if (!vrednost.IsNull)
+                return JsonConvert.DeserializeObject<List<Bend>>(vrednost);
+            else
+                return null;
+        }
+
+        public void KesirajIzvodjaca(string query,List<Izvodjac> vrednosti)
+        {
+            var db = redis.GetDatabase();
+            db.StringSet(query + ".Izvodjac", JsonConvert.SerializeObject(vrednosti));
+        }
+
+        public List<Izvodjac> KesiraniIzvodjaci(string query)
+        {
+            var db = redis.GetDatabase();
+            var vrednost = db.StringGet(query + ".Izvodjac");
+            if (!vrednost.IsNull)
+                return JsonConvert.DeserializeObject<List<Izvodjac>>(vrednost);
+            else
+                return null;
+        }
+
+        public void KesirajProducente(string query,List<Producent> vrednosti)
+        {
+            var db = redis.GetDatabase();
+            db.StringSet(query + ".Producent", JsonConvert.SerializeObject(vrednosti));
+        }
+
+        public List<Producent> KesiraniProducenti(string query)
+        {
+            var db = redis.GetDatabase();
+            var vrednost = db.StringGet(query + ".Producent");
+            if (!vrednost.IsNull)
+                return JsonConvert.DeserializeObject<List<Producent>>(vrednost);
+            else
+                return null;
+        }
 
 #endregion
 
