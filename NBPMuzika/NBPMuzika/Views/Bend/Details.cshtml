@@ -1,0 +1,35 @@
+﻿@model NBPMuzika.Models.Entiteti.BendModel
+@{
+    ViewBag.Title = Model.Bendovi[0].name + " - Music Library";
+}
+
+<h2>@Model.Bendovi[0].name</h2>
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>Members</th>
+    </tr>
+
+    @foreach (var mem in Model.Izvodjaci)
+    {
+        <tr>
+            <!--Kada se klikne na clana treba da se ode na sajt tog clana benda-->
+            <td>@Html.ActionLink(mem.name, "Details", "Izvodjac", new { id = mem.id }, null)</td>
+        </tr>
+    }
+</table>
+
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>Albums</th>
+    </tr>
+
+    @foreach (var album in Model.Albumi)
+    {
+        <tr>
+            
+            <td>@Html.ActionLink(album.name, "Details", "Album", new { id = album.id }, null)</td>
+        </tr>
+    }
+</table>
+
