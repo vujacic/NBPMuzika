@@ -191,7 +191,6 @@
     <Compile Include="Controllers\BendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IzvodjacController.cs" />
-    <Compile Include="Controllers\ApiControllers\PretragaController.cs" />
     <Compile Include="Controllers\ProducentController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
