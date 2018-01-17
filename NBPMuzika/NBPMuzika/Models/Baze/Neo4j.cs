@@ -20,7 +20,7 @@ namespace NBPMuzika.Models.Baze
             }
             catch (Exception exc)
             {
-                
+                Console.WriteLine(exc);
             }
         }
 
@@ -74,7 +74,7 @@ namespace NBPMuzika.Models.Baze
         public Res vratiPretraga(/*GraphClient client,*/ Strana input)
         {
 
-            //string query = "match (n) where n.name=~'.*(?i)" + input.search + ".*' and not n:Pesma return n.id as Id, n.name as Name, labels(n)[0] as type";
+            ////string query = "match (n) where n.name=~'.*(?i)" + input.search + ".*' and not n:Pesma return n.id as Id, n.name as Name, labels(n)[0] as type";
             var qu = client.Cypher.Match("(n)")
                 .Where("n.name=~'.*(?i)" + input.Pretraga + ".*' and not n:Pesma")
                 //.Return((n) => n.As<Pretraga>());
@@ -84,6 +84,7 @@ namespace NBPMuzika.Models.Baze
                     name = Return.As<string>("n.name"),
                     tip = n.Labels()
                 });
+            //var qu = query(input);
             int c = qu.Results.Count();
             qu=qu.Skip(input.Offset).Limit(input.Limit);
             var rez = qu.Results.Select(x => new Pretraga
@@ -96,6 +97,41 @@ namespace NBPMuzika.Models.Baze
 
             return new Res {count=c,p=(List<Pretraga>)rez};
         }
+
+        public List<Pretraga> vratiPoc(Strana input)
+        {
+            var qu = client.Cypher.Match("(n)")
+               .Where("n.name=~'.*(?i)" + input.Pretraga + ".*' and not n:Pesma")
+               //.Return((n) => n.As<Pretraga>());
+               .Return(n => new
+               {
+                   id = Return.As<long>("n.id"),
+                   name = Return.As<string>("n.name"),
+                   tip = n.Labels()
+               }).OrderByDescending("n.id").Limit(7);
+            var rez = qu.Results.Select(x => new Pretraga
+            {
+                id = x.id,
+                name = x.name,
+                type = x.tip.FirstOrDefault()
+            }).ToList<Pretraga>();
+            return rez;
+        }
+
+        //public var query(Strana input)
+        //{
+        //    //string query = "match (n) where n.name=~'.*(?i)" + input.search + ".*' and not n:Pesma return n.id as Id, n.name as Name, labels(n)[0] as type";
+        //    var qu = client.Cypher.Match("(n)")
+        //        .Where("n.name=~'.*(?i)" + input.Pretraga + ".*' and not n:Pesma")
+        //        //.Return((n) => n.As<Pretraga>());
+        //        .Return(n => new
+        //        {
+        //            id = Return.As<long>("n.id"),
+        //            name = Return.As<string>("n.name"),
+        //            tip = n.Labels()
+        //        });
+        //    return qu;
+        //}
         #endregion
 
 

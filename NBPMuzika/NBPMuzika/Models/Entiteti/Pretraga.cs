@@ -28,4 +28,6 @@ namespace NBPMuzika.Models.Entiteti
         public List<Pretraga> p;
         public int count;
     }
+
+   
 }

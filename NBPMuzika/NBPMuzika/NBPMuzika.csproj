@@ -210,6 +210,7 @@
     <Compile Include="Models\Entiteti\Pretraga.cs" />
     <Compile Include="Models\Entiteti\Producent.cs" />
     <Compile Include="Models\Entiteti\ProducentModel.cs" />
+    <Compile Include="Models\Entiteti\Sve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

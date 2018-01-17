@@ -1,24 +1,102 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NETic is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+﻿@model NBPMuzika.Models.Entiteti.Sve
+
+<h2 class="text-center font-weight-bold">Homepage</h2>
+<div class="row">
+    <div class="col-4">
+        <h3 class="text-danger">NEW</h3>
+    </div>
+    <div class="col-4">
+        <h3 class="text-success">POPULAR</h3>
+    </div>
+    <div class="col-4">
+        <h3 class="text-warning">CURRENTLY VIEWED</h3>
+    </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+    <div class="col-4">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>
+                    Naziv
+                </th>
+                <th>
+                    Tip
+                </th>
+            </tr>
+
+            @foreach (var item in Model.novo)
+            {
+                <tr class="click-me" role="button" style="cursor: pointer" data-href='/@item.type/details/@item.id'>
+                    <td class="text-info">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+
+    <div class="col-4">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>
+                    Naziv
+                </th>
+                <th>
+                    Tip
+                </th>
+            </tr>
+
+            @foreach (var item in Model.trending)
+            {
+                <tr class="click-me" role="button" style="cursor: pointer" data-href='/@item.type/details/@item.id'>
+                    <td class="text-info">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+    <div class="col-4">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>
+                    Naziv
+                </th>
+                <th>
+                    Tip
+                </th>
+            </tr>
+
+            @foreach (var item in Model.current)
+            {
+                <tr class="click-me" role="button" style="cursor: pointer" data-href='/@item.type/details/@item.id'>
+                    <td class="text-info">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.type)
+                    </td>
+                </tr>
+            }
+
+        </table>
     </div>
 </div>
+@section Scripts
+{
+<script>
+    jQuery(document).ready(function ($) {
+        $(".click-me").click(function () {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+}

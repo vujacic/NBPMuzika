@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<NBPMuzika.Models.Entiteti.Pretraga>
 
 @{
-    ViewBag.Title = "Rezultati pretrage";
+    ViewBag.Title = "Search Results";
 }
 
-<h2>Rezultati pretrage</h2>
+<h2>Search Results</h2>
 
 <p>
     @*@Html.ActionLink("Create New", "Create")*@
 </p>
-<table class="table">
+<table class="table table-hover table-bordered">
     <tr>
         <th>
             Naziv@*@Html.DisplayNameFor(model => model.name)*@
@@ -17,24 +17,24 @@
         <th>
             Tip@*@Html.DisplayNameFor(model => model.type)*@
         </th>
-        <th></th>
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr class="click-me" role="button" style="cursor: pointer" data-href='/@item.type/details/@item.id'>
+        <td class="text-info">
             @Html.DisplayFor(modelItem => item.name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.type)
             @*@Html.ActionLink("detalji","details", item.type,new { id = item.id },new { p=""})*@
         </td>
-        <td>
+        @*<td>*@
             @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
             @*@Html.ActionLink("Details", "Details", new { id=item.id })|*@
-            @Html.ActionLink("detalji", "details", item.type, new { id = item.id }, new { p = "" })   
+            @*@Html.ActionLink("detalji", "details", item.type, new { id = item.id }, new { p = "" })*@   
             @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
-        </td>
+        @*</td>*@
     </tr>
 }
 
@@ -60,7 +60,11 @@ $('#pagination-demo').twbsPagination({
             }
 
         });
-
+        jQuery(document).ready(function ($) {
+            $(".click-me").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
     </script>
 
     

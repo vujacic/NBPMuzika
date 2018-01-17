@@ -73,13 +73,21 @@ namespace NBPMuzika.Models.Baze
         public Dictionary<int,string> vratiRecentID(/*int broj*/)
         {
             var db = redis.GetDatabase();
-            var vrednosti = db.ListRange("recent", 0, 4);
+            var vrednosti = db.ListRange("recent", 0, 100);
             Dictionary<int, string> ret = new Dictionary<int, string>();
+            int j = 0;
             for (int i = 0; i < vrednosti.Length; i++)
             {
+               
                 string zaParsiranje = vrednosti[i];
                 string[] temp = zaParsiranje.Split('.');
-                ret.Add(Int32.Parse(temp[0]), temp[1]);
+                if (!ret.ContainsKey(Int32.Parse(temp[0])))
+                {
+                    ret.Add(Int32.Parse(temp[0]), temp[1]);
+                    j++;
+                }
+                if (j > 4)
+                    break;
             }
             return ret;
         }
