@@ -96,91 +96,91 @@ namespace NBPMuzika.Models.Baze
 #region KesiranjePretrage
         
 
-        public void KesirajAlbume(string query, List<Album> vrednosti)
-        {
-            var db = redis.GetDatabase();
-            db.StringSet(query + ".Album", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0,5,0));
-        }
+        //public void KesirajAlbume(string query, List<Album> vrednosti)
+        //{
+        //    var db = redis.GetDatabase();
+        //    db.StringSet(query + ".Album", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0,5,0));
+        //}
 
-        public List<Album> KesiraniAlbumi(string query)
-        {
-            var db = redis.GetDatabase();
-            var vrednost = db.StringGet(query + ".Album");
-            if (!vrednost.IsNull)
-                return JsonConvert.DeserializeObject<List<Album>>(vrednost);
-            else
-                return null;
-        }
+        //public List<Album> KesiraniAlbumi(string query)
+        //{
+        //    var db = redis.GetDatabase();
+        //    var vrednost = db.StringGet(query + ".Album");
+        //    if (!vrednost.IsNull)
+        //        return JsonConvert.DeserializeObject<List<Album>>(vrednost);
+        //    else
+        //        return null;
+        //}
 
-        public void KesirajBend(string query,List<Bend> vrednosti)
-        {
-            var db = redis.GetDatabase();
-            db.StringSet(query + ".Bend", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
-        }
+        //public void KesirajBend(string query,List<Bend> vrednosti)
+        //{
+        //    var db = redis.GetDatabase();
+        //    db.StringSet(query + ".Bend", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
+        //}
 
-        public List<Bend> KesiraniBendovi(string query)
-        {
-            var db = redis.GetDatabase();
-            var vrednost = db.StringGet(query + ".Bend");
-            if (!vrednost.IsNull)
-                return JsonConvert.DeserializeObject<List<Bend>>(vrednost);
-            else
-                return null;
-        }
+        //public List<Bend> KesiraniBendovi(string query)
+        //{
+        //    var db = redis.GetDatabase();
+        //    var vrednost = db.StringGet(query + ".Bend");
+        //    if (!vrednost.IsNull)
+        //        return JsonConvert.DeserializeObject<List<Bend>>(vrednost);
+        //    else
+        //        return null;
+        //}
 
-        public void KesirajIzvodjaca(string query,List<Izvodjac> vrednosti)
-        {
-            var db = redis.GetDatabase();
-            db.StringSet(query + ".Izvodjac", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
-        }
+        //public void KesirajIzvodjaca(string query,List<Izvodjac> vrednosti)
+        //{
+        //    var db = redis.GetDatabase();
+        //    db.StringSet(query + ".Izvodjac", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
+        //}
 
-        public List<Izvodjac> KesiraniIzvodjaci(string query)
-        {
-            var db = redis.GetDatabase();
-            var vrednost = db.StringGet(query + ".Izvodjac");
-            if (!vrednost.IsNull)
-                return JsonConvert.DeserializeObject<List<Izvodjac>>(vrednost);
-            else
-                return null;
-        }
+        //public List<Izvodjac> KesiraniIzvodjaci(string query)
+        //{
+        //    var db = redis.GetDatabase();
+        //    var vrednost = db.StringGet(query + ".Izvodjac");
+        //    if (!vrednost.IsNull)
+        //        return JsonConvert.DeserializeObject<List<Izvodjac>>(vrednost);
+        //    else
+        //        return null;
+        //}
 
-        public void KesirajProducente(string query,List<Producent> vrednosti)
-        {
-            var db = redis.GetDatabase();
-            db.StringSet(query + ".Producent", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
-        }
+        //public void KesirajProducente(string query,List<Producent> vrednosti)
+        //{
+        //    var db = redis.GetDatabase();
+        //    db.StringSet(query + ".Producent", JsonConvert.SerializeObject(vrednosti), new TimeSpan(0, 5, 0));
+        //}
 
-        public List<Producent> KesiraniProducenti(string query)
-        {
-            var db = redis.GetDatabase();
-            var vrednost = db.StringGet(query + ".Producent");
-            if (!vrednost.IsNull)
-                return JsonConvert.DeserializeObject<List<Producent>>(vrednost);
-            else
-                return null;
-        }
+        //public List<Producent> KesiraniProducenti(string query)
+        //{
+        //    var db = redis.GetDatabase();
+        //    var vrednost = db.StringGet(query + ".Producent");
+        //    if (!vrednost.IsNull)
+        //        return JsonConvert.DeserializeObject<List<Producent>>(vrednost);
+        //    else
+        //        return null;
+        //}
 
         public void KesirajRezultat(string query, Res vrednosti, int pagenum)
         {
             var db = redis.GetDatabase();
-            string zaKesiranje = query;
-            if (zaKesiranje != null)
-                db.StringSet("queryPretraga", query);
-            if (zaKesiranje == null)
-                zaKesiranje = db.StringGet("queryPretraga");
-            db.StringSet(zaKesiranje + "." + pagenum, JsonConvert.SerializeObject(vrednosti.p), new TimeSpan(0, 5, 0));
-            db.StringSet(zaKesiranje + "." + pagenum + ".count", vrednosti.count, new TimeSpan(0, 5, 0));
+            //string zaKesiranje = query;
+            //if (zaKesiranje != null)
+            //    db.StringSet("queryPretraga", query);
+            //if (zaKesiranje == null)
+            //    zaKesiranje = db.StringGet("queryPretraga");
+            db.StringSet(query + "." + pagenum, JsonConvert.SerializeObject(vrednosti.p), new TimeSpan(0, 5, 0));
+            db.StringSet(query + "." + pagenum + ".count", vrednosti.count, new TimeSpan(0, 5, 0));
         }
 
         public Res KesiraneVrednosti(string query, int pagenum)
         {
             var db = redis.GetDatabase();
-            string rezultat = query;
-            if (rezultat == null)
-                rezultat = db.StringGet("queryPretraga");
+            //string rezultat = query;
+            //if (rezultat == null)
+            //    rezultat = db.StringGet("queryPretraga");
             Res vrednosti = new Res();
-            var rez = db.StringGet(rezultat + "." + pagenum);
-            var c = db.StringGet(rezultat + "." + pagenum + ".count");
+            var rez = db.StringGet(query + "." + pagenum);
+            var c = db.StringGet(query + "." + pagenum + ".count");
             if (!rez.IsNull)
             {
                 vrednosti.p = JsonConvert.DeserializeObject<List<Pretraga>>(rez);

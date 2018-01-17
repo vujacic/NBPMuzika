@@ -39,38 +39,38 @@ namespace NBPMuzika.Models.Baze
             List<Album> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Album>(qu).ToList();
             return vrati;
         }
-        public List<Bend> vratiBendoveSearch(/*GraphClient client,*/ string input)
-        {
+        //public List<Bend> vratiBendoveSearch(/*GraphClient client,*/ string input)
+        //{
 
-            string query = "match (n:Bend) where n.name=~'.*(?i)" + input + ".*' return n";
-            var qu = vratiRezultat(query);
-            List<Bend> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Bend>(qu).ToList();
-            return vrati;
-        }
-        public List<Izvodjac> vratiIzvodjaceSearch(/*GraphClient client,*/ string input)
-        {
+        //    string query = "match (n:Bend) where n.name=~'.*(?i)" + input + ".*' return n";
+        //    var qu = vratiRezultat(query);
+        //    List<Bend> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Bend>(qu).ToList();
+        //    return vrati;
+        //}
+        //public List<Izvodjac> vratiIzvodjaceSearch(/*GraphClient client,*/ string input)
+        //{
 
-            string query = "match (n:Izvodjac) where n.name=~'.*(?i)" + input + ".*' return n";
-            var qu = vratiRezultat(query);
-            List<Izvodjac> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Izvodjac>(qu).ToList();
-            return vrati;
-        }
-        public List<Pesma> vratiPesmeSearch(/*GraphClient client,*/ string input)
-        {
+        //    string query = "match (n:Izvodjac) where n.name=~'.*(?i)" + input + ".*' return n";
+        //    var qu = vratiRezultat(query);
+        //    List<Izvodjac> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Izvodjac>(qu).ToList();
+        //    return vrati;
+        //}
+        //public List<Pesma> vratiPesmeSearch(/*GraphClient client,*/ string input)
+        //{
 
-            string query = "match (n:Pesma) where n.name=~'.*(?i)" + input + ".*' return n";
-            var qu = vratiRezultat(query);
-            List<Pesma> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Pesma>(qu).ToList();
-            return vrati;
-        }
-        public List<Producent> vratiProducentSearch(/*GraphClient client,*/ string input)
-        {
+        //    string query = "match (n:Pesma) where n.name=~'.*(?i)" + input + ".*' return n";
+        //    var qu = vratiRezultat(query);
+        //    List<Pesma> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Pesma>(qu).ToList();
+        //    return vrati;
+        //}
+        //public List<Producent> vratiProducentSearch(/*GraphClient client,*/ string input)
+        //{
 
-            string query = "match (n:Producent) where n.name=~'.*(?i)" + input + ".*' return n";
-            var qu = vratiRezultat(query);
-            List<Producent> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Producent>(qu).ToList();
-            return vrati;
-        }
+        //    string query = "match (n:Producent) where n.name=~'.*(?i)" + input + ".*' return n";
+        //    var qu = vratiRezultat(query);
+        //    List<Producent> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Producent>(qu).ToList();
+        //    return vrati;
+        //}
         public Res vratiPretraga(/*GraphClient client,*/ Strana input)
         {
 
