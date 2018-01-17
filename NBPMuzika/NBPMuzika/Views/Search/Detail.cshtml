@@ -55,8 +55,8 @@ $('#pagination-demo').twbsPagination({
             onPageClick: function (event, page) {
                 //$('#page-content').text('Page ' + '@ViewBag.page');
                 if(a>0)
-                    location.href = "/search/detail?page=" + page + "&pretraga=";
-                a++
+                    location.href = "/search/detail?page=" + page + "&pretraga="+$('#iptSrc').val();
+                a++;
             }
 
         });

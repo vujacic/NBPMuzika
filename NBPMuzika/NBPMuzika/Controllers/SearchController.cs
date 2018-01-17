@@ -34,14 +34,14 @@ namespace NBPMuzika.Controllers.ApiControllers
                 str.Page -= 1;
             str.Offset = str.Limit * str.Page;
 
-            Res lista = red.KesiraneVrednosti(str.Pretraga, str.Page);
-            if (lista == null)
-            {
-                lista = neo.vratiPretraga(str);
-                red.KesirajRezultat(str.Pretraga, lista, str.Page);
-            }
+            //Res lista = red.KesiraneVrednosti(str.Pretraga, str.Page);
+            //if (lista == null)
+            //{
+            //    lista = neo.vratiPretraga(str);
+            //    red.KesirajRezultat(str.Pretraga, lista, str.Page);
+            //}
 
-            // Res lista = neo.vratiPretraga(str);
+             Res lista = neo.vratiPretraga(str);
             ViewBag.count = lista.count;
             return View(lista.p);
         }
