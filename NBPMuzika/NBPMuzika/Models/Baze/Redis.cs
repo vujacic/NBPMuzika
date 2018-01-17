@@ -160,7 +160,38 @@ namespace NBPMuzika.Models.Baze
                 return null;
         }
 
-#endregion
+        public void KesirajRezultat(string query, Res vrednosti, int pagenum)
+        {
+            var db = redis.GetDatabase();
+            string zaKesiranje = query;
+            if (zaKesiranje != null)
+                db.StringSet("queryPretraga", query);
+            if (zaKesiranje == null)
+                zaKesiranje = db.StringGet("queryPretraga");
+            db.StringSet(zaKesiranje + "." + pagenum, JsonConvert.SerializeObject(vrednosti.p), new TimeSpan(0, 5, 0));
+            db.StringSet(zaKesiranje + "." + pagenum + ".count", vrednosti.count, new TimeSpan(0, 5, 0));
+        }
+
+        public Res KesiraneVrednosti(string query, int pagenum)
+        {
+            var db = redis.GetDatabase();
+            string rezultat = query;
+            if (rezultat == null)
+                rezultat = db.StringGet("queryPretraga");
+            Res vrednosti = new Res();
+            var rez = db.StringGet(rezultat + "." + pagenum);
+            var c = db.StringGet(rezultat + "." + pagenum + ".count");
+            if (!rez.IsNull)
+            {
+                vrednosti.p = JsonConvert.DeserializeObject<List<Pretraga>>(rez);
+                vrednosti.count = Int32.Parse(c);
+                return vrednosti;
+            }
+            else
+                return null;
+        }
+
+        #endregion
 
     }
 }
