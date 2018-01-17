@@ -13,7 +13,7 @@ namespace NBPMuzika.Models.Baze
         GraphClient client;
 
         public Neo4j() {
-            client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "dare");
+            client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "1234");
             try
             {
                 client.Connect();
