@@ -188,6 +188,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\BendController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IzvodjacController.cs" />
     <Compile Include="Controllers\ApiControllers\PretragaController.cs" />
@@ -202,6 +203,7 @@
     <Compile Include="Models\Entiteti\Album.cs" />
     <Compile Include="Models\Entiteti\AlbumModel.cs" />
     <Compile Include="Models\Entiteti\Bend.cs" />
+    <Compile Include="Models\Entiteti\BendModel.cs" />
     <Compile Include="Models\Entiteti\Izvodjac.cs" />
     <Compile Include="Models\Entiteti\IzvodjacModel.cs" />
     <Compile Include="Models\Entiteti\Pesma.cs" />
@@ -317,6 +319,7 @@
     <Content Include="Views\Album\Details.cshtml" />
     <Content Include="Views\Producent\Details.cshtml" />
     <Content Include="Views\Izvodjac\Details.cshtml" />
+    <Content Include="Views\Bend\Details.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
