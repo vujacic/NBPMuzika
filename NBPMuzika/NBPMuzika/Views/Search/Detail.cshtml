@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NBPMuzika.Models.Entiteti.Pretraga>
+
+@{
+    ViewBag.Title = "Rezultati pretrage";
+}
+
+<h2>Rezultati pretrage</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Naziv@*@Html.DisplayNameFor(model => model.name)*@
+        </th>
+        <th>
+            Tip@*@Html.DisplayNameFor(model => model.type)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+            @*@Html.ActionLink("detalji","details", item.type,new { id = item.id },new { p=""})*@
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.id }) |*@
+            @*@Html.ActionLink("Details", "Details", new { id=item.id })|*@
+            @Html.ActionLink("detalji", "details", item.type, new { id = item.id }, new { p = "" })   
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<ul id="pagination-demo" class="pagination-sm"></ul>
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/paging/jquery.twbsPagination.min.js")"></script>
+    <script>
+        $('#iptSrc').val('@ViewBag.naziv');
+        var a = 0;
+$('#pagination-demo').twbsPagination({
+            totalPages: Math.ceil((@ViewBag.Count)/7),
+            visiblePages: 5,
+            startPage: @ViewBag.Page,
+            onPageClick: function (event, page) {
+                //$('#page-content').text('Page ' + '@ViewBag.page');
+                if(a>0)
+                    location.href = "/search/detail?page=" + page + "&pretraga=";
+                a++
+            }
+
+        });
+
+    </script>
+
+    
+}

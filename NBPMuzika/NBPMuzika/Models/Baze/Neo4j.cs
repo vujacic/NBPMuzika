@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using NBPMuzika.Models.Entiteti;
 using Neo4jClient;
+using Neo4jClient.Cypher;
 
 namespace NBPMuzika.Models.Baze
 {
@@ -69,6 +70,31 @@ namespace NBPMuzika.Models.Baze
             var qu = vratiRezultat(query);
             List<Producent> vrati = ((IRawGraphClient)client).ExecuteGetCypherResults<Producent>(qu).ToList();
             return vrati;
+        }
+        public Res vratiPretraga(/*GraphClient client,*/ Strana input)
+        {
+
+            //string query = "match (n) where n.name=~'.*(?i)" + input.search + ".*' and not n:Pesma return n.id as Id, n.name as Name, labels(n)[0] as type";
+            var qu = client.Cypher.Match("(n)")
+                .Where("n.name=~'.*(?i)" + input.Pretraga + ".*' and not n:Pesma")
+                //.Return((n) => n.As<Pretraga>());
+                .Return(n => new
+                {
+                    id = Return.As<long>("n.id"),
+                    name = Return.As<string>("n.name"),
+                    tip = n.Labels()
+                });
+            int c = qu.Results.Count();
+            qu=qu.Skip(input.Offset).Limit(input.Limit);
+            var rez = qu.Results.Select(x => new Pretraga
+            {
+                id = x.id,
+                name = x.name,
+                type=x.tip.FirstOrDefault()
+            }).ToList<Pretraga>();
+            
+
+            return new Res {count=c,p=(List<Pretraga>)rez};
         }
         #endregion
 

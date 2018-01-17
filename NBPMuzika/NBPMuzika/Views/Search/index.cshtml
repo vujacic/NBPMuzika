@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "index";
+}
+@section Scripts
+{
+    <script src="@Url.Content("~/Scripts/paging/jquery.twbsPagination.min.js")"></script>
+    <script>$('#pagination-demo').twbsPagination({
+            totalPages: 35,
+            visiblePages: 7,
+            onPageClick: function (event, page) {
+                $('#page-content').text('Page ' + page);
+            }
+        });</script>
+}
+<h2>Rezultati pretrage</h2>
+
+<ul id="pagination-demo" class="pagination-sm"></ul>
+
+<table id="my-final-table">
+    <thead>
+    <th>name</th>
+    <th>Type</th>
+    </thead>
+    <tbody></tbody>
+</table>
